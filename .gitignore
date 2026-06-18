@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+
+# Large / copyrighted raw audio — NOT needed at runtime (the indexed DB ships instead).
+data/songs/*.mp3
+data/songs_demo/
+
+# Dev-only artifacts
+figures/_*
+src/_explore_*.py
+src/_shoot.py
+
+# Keep these (shipped with the deployed app):
+!app/web/static/fingerprint_db.pkl
+!app/web/static/single_peak_index.pkl
+!app/web/static/thumbs/
+!app/web/static/samples/

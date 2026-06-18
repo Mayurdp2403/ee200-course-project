@@ -1,0 +1,27 @@
+[
+  {
+    "name": "sample1",
+    "file": "samples/sample1.wav",
+    "truth": "Back In The U.S.S.R."
+  },
+  {
+    "name": "sample2",
+    "file": "samples/sample2.wav",
+    "truth": "Blackbird"
+  },
+  {
+    "name": "sample3",
+    "file": "samples/sample3.wav",
+    "truth": "Bohemian Rhapsody"
+  },
+  {
+    "name": "sample4",
+    "file": "samples/sample4.wav",
+    "truth": "Can_t Buy Me Love"
+  },
+  {
+    "name": "sample5",
+    "file": "samples/sample5.wav",
+    "truth": "Crazy Little Thing Called Love"
+  }
+]

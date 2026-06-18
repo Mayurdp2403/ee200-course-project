@@ -1,0 +1,402 @@
+[
+  {
+    "label": "A Day In The Life",
+    "hashes": 43606,
+    "peaks": 3136,
+    "duration": 337.4,
+    "thumb": "thumbs/A Day In The Life.png",
+    "cmap": "viridis"
+  },
+  {
+    "label": "A Hard Day_s Night",
+    "hashes": 44021,
+    "peaks": 2944,
+    "duration": 153.0,
+    "thumb": "thumbs/A Hard Day_s Night.png",
+    "cmap": "plasma"
+  },
+  {
+    "label": "Across The Universe",
+    "hashes": 52071,
+    "peaks": 3499,
+    "duration": 228.2,
+    "thumb": "thumbs/Across The Universe.png",
+    "cmap": "cool"
+  },
+  {
+    "label": "Back In The U.S.S.R.",
+    "hashes": 42026,
+    "peaks": 2812,
+    "duration": 164.9,
+    "thumb": "thumbs/Back In The U.S.S.R..png",
+    "cmap": "spring"
+  },
+  {
+    "label": "Blackbird",
+    "hashes": 13930,
+    "peaks": 1102,
+    "duration": 138.4,
+    "thumb": "thumbs/Blackbird.png",
+    "cmap": "summer"
+  },
+  {
+    "label": "Bohemian Rhapsody",
+    "hashes": 42279,
+    "peaks": 2970,
+    "duration": 238.0,
+    "thumb": "thumbs/Bohemian Rhapsody.png",
+    "cmap": "winter"
+  },
+  {
+    "label": "Can_t Buy Me Love",
+    "hashes": 39274,
+    "peaks": 2627,
+    "duration": 131.3,
+    "thumb": "thumbs/Can_t Buy Me Love.png",
+    "cmap": "autumn"
+  },
+  {
+    "label": "Crazy Little Thing Called Love",
+    "hashes": 53671,
+    "peaks": 3591,
+    "duration": 163.6,
+    "thumb": "thumbs/Crazy Little Thing Called Love.png",
+    "cmap": "YlGnBu"
+  },
+  {
+    "label": "Day Tripper",
+    "hashes": 43682,
+    "peaks": 2922,
+    "duration": 169.0,
+    "thumb": "thumbs/Day Tripper.png",
+    "cmap": "PuBuGn"
+  },
+  {
+    "label": "Don_t Stop Me Now",
+    "hashes": 63916,
+    "peaks": 4273,
+    "duration": 217.8,
+    "thumb": "thumbs/Don_t Stop Me Now.png",
+    "cmap": "BuPu"
+  },
+  {
+    "label": "Drive My Car",
+    "hashes": 39035,
+    "peaks": 2612,
+    "duration": 148.9,
+    "thumb": "thumbs/Drive My Car.png",
+    "cmap": "GnBu"
+  },
+  {
+    "label": "Eight Days A Week",
+    "hashes": 46289,
+    "peaks": 3095,
+    "duration": 163.3,
+    "thumb": "thumbs/Eight Days A Week.png",
+    "cmap": "YlOrRd"
+  },
+  {
+    "label": "Eleanor Rigby",
+    "hashes": 30997,
+    "peaks": 2075,
+    "duration": 125.9,
+    "thumb": "thumbs/Eleanor Rigby.png",
+    "cmap": "viridis"
+  },
+  {
+    "label": "Get Back",
+    "hashes": 38816,
+    "peaks": 2663,
+    "duration": 189.4,
+    "thumb": "thumbs/Get Back.png",
+    "cmap": "plasma"
+  },
+  {
+    "label": "Hello, Goodbye",
+    "hashes": 56163,
+    "peaks": 3757,
+    "duration": 207.8,
+    "thumb": "thumbs/Hello, Goodbye.png",
+    "cmap": "cool"
+  },
+  {
+    "label": "Help!",
+    "hashes": 42821,
+    "peaks": 2863,
+    "duration": 139.2,
+    "thumb": "thumbs/Help!.png",
+    "cmap": "spring"
+  },
+  {
+    "label": "Helter Skelter",
+    "hashes": 68667,
+    "peaks": 4621,
+    "duration": 269.8,
+    "thumb": "thumbs/Helter Skelter.png",
+    "cmap": "summer"
+  },
+  {
+    "label": "Hey Jude",
+    "hashes": 102219,
+    "peaks": 6880,
+    "duration": 425.7,
+    "thumb": "thumbs/Hey Jude.png",
+    "cmap": "winter"
+  },
+  {
+    "label": "I Am The Walrus",
+    "hashes": 68397,
+    "peaks": 4585,
+    "duration": 275.9,
+    "thumb": "thumbs/I Am The Walrus.png",
+    "cmap": "autumn"
+  },
+  {
+    "label": "I Saw Her Standing There",
+    "hashes": 52127,
+    "peaks": 3485,
+    "duration": 174.0,
+    "thumb": "thumbs/I Saw Her Standing There.png",
+    "cmap": "YlGnBu"
+  },
+  {
+    "label": "I Want It All",
+    "hashes": 64187,
+    "peaks": 4293,
+    "duration": 252.3,
+    "thumb": "thumbs/I Want It All.png",
+    "cmap": "PuBuGn"
+  },
+  {
+    "label": "I Want To Hold Your Hand",
+    "hashes": 43692,
+    "peaks": 2921,
+    "duration": 145.8,
+    "thumb": "thumbs/I Want To Hold Your Hand.png",
+    "cmap": "BuPu"
+  },
+  {
+    "label": "I_ll Follow The Sun",
+    "hashes": 19673,
+    "peaks": 1326,
+    "duration": 108.9,
+    "thumb": "thumbs/I_ll Follow The Sun.png",
+    "cmap": "GnBu"
+  },
+  {
+    "label": "I_ve Got A Feeling",
+    "hashes": 48173,
+    "peaks": 3228,
+    "duration": 217.6,
+    "thumb": "thumbs/I_ve Got A Feeling.png",
+    "cmap": "YlOrRd"
+  },
+  {
+    "label": "In My Life",
+    "hashes": 30658,
+    "peaks": 2084,
+    "duration": 146.4,
+    "thumb": "thumbs/In My Life.png",
+    "cmap": "viridis"
+  },
+  {
+    "label": "Killer Queen",
+    "hashes": 51643,
+    "peaks": 3454,
+    "duration": 180.9,
+    "thumb": "thumbs/Killer Queen.png",
+    "cmap": "plasma"
+  },
+  {
+    "label": "Let It Be",
+    "hashes": 49840,
+    "peaks": 3427,
+    "duration": 243.1,
+    "thumb": "thumbs/Let It Be.png",
+    "cmap": "cool"
+  },
+  {
+    "label": "Love Me Do",
+    "hashes": 39847,
+    "peaks": 2666,
+    "duration": 141.7,
+    "thumb": "thumbs/Love Me Do.png",
+    "cmap": "spring"
+  },
+  {
+    "label": "Lucy In The Sky With Diamonds",
+    "hashes": 49975,
+    "peaks": 3358,
+    "duration": 208.5,
+    "thumb": "thumbs/Lucy In The Sky With Diamonds.png",
+    "cmap": "summer"
+  },
+  {
+    "label": "Never Gonna Give You Up",
+    "hashes": 65121,
+    "peaks": 4352,
+    "duration": 213.2,
+    "thumb": "thumbs/Never Gonna Give You Up.png",
+    "cmap": "winter"
+  },
+  {
+    "label": "Norwegian Wood (This Bird Has Flown)",
+    "hashes": 30667,
+    "peaks": 2057,
+    "duration": 124.7,
+    "thumb": "thumbs/Norwegian Wood (This Bird Has Flown).png",
+    "cmap": "autumn"
+  },
+  {
+    "label": "Penny Lane",
+    "hashes": 61369,
+    "peaks": 4106,
+    "duration": 180.6,
+    "thumb": "thumbs/Penny Lane.png",
+    "cmap": "YlGnBu"
+  },
+  {
+    "label": "Radio Ga Ga",
+    "hashes": 108526,
+    "peaks": 7258,
+    "duration": 350.1,
+    "thumb": "thumbs/Radio Ga Ga.png",
+    "cmap": "PuBuGn"
+  },
+  {
+    "label": "Revolution",
+    "hashes": 68816,
+    "peaks": 4596,
+    "duration": 207.0,
+    "thumb": "thumbs/Revolution.png",
+    "cmap": "BuPu"
+  },
+  {
+    "label": "Sgt. Pepper_s Lonely Hearts Club Band",
+    "hashes": 30594,
+    "peaks": 2062,
+    "duration": 122.9,
+    "thumb": "thumbs/Sgt. Pepper_s Lonely Hearts Club Band.png",
+    "cmap": "GnBu"
+  },
+  {
+    "label": "She Said She Said",
+    "hashes": 49223,
+    "peaks": 3290,
+    "duration": 156.2,
+    "thumb": "thumbs/She Said She Said.png",
+    "cmap": "YlOrRd"
+  },
+  {
+    "label": "Somebody To Love",
+    "hashes": 70346,
+    "peaks": 4788,
+    "duration": 299.3,
+    "thumb": "thumbs/Somebody To Love.png",
+    "cmap": "viridis"
+  },
+  {
+    "label": "Something",
+    "hashes": 25966,
+    "peaks": 1850,
+    "duration": 187.9,
+    "thumb": "thumbs/Something.png",
+    "cmap": "plasma"
+  },
+  {
+    "label": "Taxman",
+    "hashes": 52299,
+    "peaks": 3502,
+    "duration": 158.3,
+    "thumb": "thumbs/Taxman.png",
+    "cmap": "cool"
+  },
+  {
+    "label": "The Long And Winding Road",
+    "hashes": 42376,
+    "peaks": 2861,
+    "duration": 219.5,
+    "thumb": "thumbs/The Long And Winding Road.png",
+    "cmap": "spring"
+  },
+  {
+    "label": "Two Of Us",
+    "hashes": 48117,
+    "peaks": 3258,
+    "duration": 216.8,
+    "thumb": "thumbs/Two Of Us.png",
+    "cmap": "summer"
+  },
+  {
+    "label": "Under Pressure",
+    "hashes": 61651,
+    "peaks": 4174,
+    "duration": 248.8,
+    "thumb": "thumbs/Under Pressure.png",
+    "cmap": "winter"
+  },
+  {
+    "label": "We Are The Champions",
+    "hashes": 36136,
+    "peaks": 2500,
+    "duration": 179.4,
+    "thumb": "thumbs/We Are The Champions.png",
+    "cmap": "autumn"
+  },
+  {
+    "label": "We Can Work It Out",
+    "hashes": 36444,
+    "peaks": 2438,
+    "duration": 135.7,
+    "thumb": "thumbs/We Can Work It Out.png",
+    "cmap": "YlGnBu"
+  },
+  {
+    "label": "We Will Rock You",
+    "hashes": 23741,
+    "peaks": 1601,
+    "duration": 134.5,
+    "thumb": "thumbs/We Will Rock You.png",
+    "cmap": "PuBuGn"
+  },
+  {
+    "label": "While My Guitar Gently Weeps",
+    "hashes": 78491,
+    "peaks": 5250,
+    "duration": 285.3,
+    "thumb": "thumbs/While My Guitar Gently Weeps.png",
+    "cmap": "BuPu"
+  },
+  {
+    "label": "With A Little Help From My Friends",
+    "hashes": 55630,
+    "peaks": 3722,
+    "duration": 164.1,
+    "thumb": "thumbs/With A Little Help From My Friends.png",
+    "cmap": "GnBu"
+  },
+  {
+    "label": "Within You Without You",
+    "hashes": 72915,
+    "peaks": 4887,
+    "duration": 304.7,
+    "thumb": "thumbs/Within You Without You.png",
+    "cmap": "YlOrRd"
+  },
+  {
+    "label": "Yesterday",
+    "hashes": 20599,
+    "peaks": 1426,
+    "duration": 125.7,
+    "thumb": "thumbs/Yesterday.png",
+    "cmap": "viridis"
+  },
+  {
+    "label": "You Really Got A Hold On Me",
+    "hashes": 48310,
+    "peaks": 3229,
+    "duration": 181.4,
+    "thumb": "thumbs/You Really Got A Hold On Me.png",
+    "cmap": "plasma"
+  }
+]

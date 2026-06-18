@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: ee200-audio-fingerprinting
+    runtime: python
+    plan: free
+    buildCommand: pip install -r app/web/requirements.txt
+    startCommand: gunicorn --chdir app/web server:app --workers 1 --timeout 120
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"

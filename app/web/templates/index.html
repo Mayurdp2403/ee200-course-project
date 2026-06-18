@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EE200: Audio Fingerprinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <header class="hero">
+    <div class="brand">
+      <span class="logo">
+        <span></span><span></span><span></span><span></span><span></span>
+      </span>
+      <h1><span class="ee">EE</span><span class="num">200</span><span class="rest">: Audio Fingerprinting</span></h1>
+    </div>
+    <p class="kicker">SIGNALS, SYSTEMS &amp; NETWORKS &nbsp;&bull;&nbsp; SHAZAM-STYLE IDENTIFIER</p>
+    <p class="tagline">Index a library of songs as spectrogram fingerprints, then identify any short clip against it.</p>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="library">&#9672; LIBRARY</button>
+    <button class="tab" data-tab="identify">&#9678; IDENTIFY</button>
+    <button class="tab" data-tab="batch">&#9636; BATCH</button>
+  </nav>
+
+  <!-- LIBRARY -->
+  <section id="library" class="panel active">
+    <p class="micro">LIBRARY</p>
+    <h2>The indexed library <span id="lib-count" class="dim"></span></h2>
+    <p class="lead">Every track below is fingerprinted into a constellation of spectral peaks. The thumbnail is that constellation; brighter, denser songs yield more hashes.</p>
+    <div id="library-grid" class="grid"></div>
+  </section>
+
+  <!-- IDENTIFY -->
+  <section id="identify" class="panel">
+    <p class="micro">SEARCH</p>
+    <h2>Identify a clip</h2>
+
+    <div class="input-row">
+      <label class="dropzone" id="dropzone">
+        <input type="file" id="clip-input" accept=".wav,.mp3,.flac,.ogg,.m4a" hidden />
+        <span class="btn-teal">&#8682; Upload</span>
+        <span class="dz-hint" id="dz-hint">Drop / pick a file &bull; WAV, MP3, FLAC, OGG, M4A</span>
+      </label>
+      <button id="record-btn" class="btn-rec" title="Record from microphone">
+        <span class="dot"></span><span id="rec-label">Record</span>
+      </button>
+    </div>
+
+    <p class="micro mt">OR TRY A SAMPLE</p>
+    <div id="samples" class="samples"></div>
+
+    <button id="identify-btn" class="btn-teal solid" disabled>Identify</button>
+
+    <!-- Results -->
+    <div id="identify-results" class="hidden">
+      <!-- pipeline timing strip -->
+      <div class="pipeline" id="pipeline"></div>
+
+      <!-- match banner -->
+      <div class="match-banner" id="match-banner">
+        <p class="micro teal" id="match-label">MATCH FOUND</p>
+        <h2 class="match-title" id="match-title">&mdash;</h2>
+        <p class="match-sub" id="match-sub"></p>
+      </div>
+
+      <!-- candidates -->
+      <p class="micro mt">CANDIDATE SCORES</p>
+      <div id="candidates" class="candidates"></div>
+
+      <!-- proof -->
+      <p class="micro mt">STEP 1 &middot; THE PICTURE</p>
+      <h3>Spectrogram of the clip</h3>
+      <p class="lead">A short sliding window turns the waveform into a time&ndash;frequency image &mdash; which frequencies sound, and when.</p>
+      <img class="viz" id="img-spectrogram" alt="spectrogram" />
+
+      <p class="micro mt">STEP 2 &middot; THE FINGERPRINT</p>
+      <h3>Constellation of peaks</h3>
+      <p class="lead">Keep only the loudest local maxima. These sparse points survive noise and become the clip&rsquo;s fingerprint.</p>
+      <img class="viz" id="img-constellation" alt="constellation" />
+
+      <p class="micro mt">STEP 3 &middot; THE PROOF</p>
+      <h3>The alignment spike</h3>
+      <p class="lead">Every matched hash votes for a time offset (database frame &minus; query frame). Chance matches scatter into a flat noise floor; a genuine match makes them <b class="teal">converge on a single offset</b>. That spike cannot be a coincidence.</p>
+      <img class="viz" id="img-histogram" alt="offset histogram" />
+
+      <!-- EXTRA: single peaks vs paired hashes -->
+      <p class="micro mt">DEEPER &middot; WHY PAIR PEAKS?</p>
+      <h3>Single peaks vs. paired hashes</h3>
+      <p class="lead">A lone frequency peak recurs across countless songs, so single-peak matching is noisy. Pairing two peaks with their time gap into <code>(f1, f2, &Delta;t)</code> is far rarer to collide on &mdash; the alignment spike sharpens dramatically. Compare them on this very clip:</p>
+      <button id="compare-btn" class="btn-ghost">Compare matchers</button>
+      <div id="compare-out" class="compare hidden">
+        <div class="compare-col">
+          <p class="micro teal">PAIRED HASHES</p>
+          <p class="compare-verdict" id="paired-verdict"></p>
+          <img class="viz" id="img-paired" alt="paired histogram" />
+        </div>
+        <div class="compare-col">
+          <p class="micro">SINGLE PEAKS</p>
+          <p class="compare-verdict" id="single-verdict"></p>
+          <img class="viz" id="img-single" alt="single histogram" />
+        </div>
+      </div>
+
+      <!-- EXTRA: robustness lab -->
+      <p class="micro mt">DEEPER &middot; ROBUSTNESS LAB</p>
+      <h3>How far can we push it?</h3>
+      <p class="lead">Re-test the same clip under increasing white noise and pitch shift. Watch the score survive heavy noise (peaks are sparse and loud) but collapse under even a small pitch shift (hashes key on <i>absolute</i> frequency bins). Green = still correct, red = match lost.</p>
+      <button id="robust-btn" class="btn-ghost">Stress-test this clip</button>
+      <div id="robust-out" class="robust hidden">
+        <div class="robust-col">
+          <p class="micro">NOISE SWEEP</p>
+          <img class="viz" id="img-noise" alt="noise robustness" />
+        </div>
+        <div class="robust-col">
+          <p class="micro">PITCH SWEEP</p>
+          <img class="viz" id="img-pitch" alt="pitch robustness" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BATCH -->
+  <section id="batch" class="panel">
+    <p class="micro">BATCH</p>
+    <h2>Identify many clips at once</h2>
+    <p class="lead">Upload a set of query clips. Each is identified against the indexed library, and the results are written to a standardised <code>results.csv</code> with columns <code>filename, prediction</code>. The prediction is the matched track&rsquo;s filename without its extension, or <code>none</code> when no candidate clears the confidence threshold.</p>
+
+    <label class="dropzone" id="batch-dropzone">
+      <input type="file" id="batch-input" accept=".wav,.mp3,.flac,.ogg,.m4a" multiple hidden />
+      <span class="btn-teal">&#8682; Add clips</span>
+      <span class="dz-hint">Select multiple query files</span>
+    </label>
+    <div id="batch-chips" class="chips"></div>
+    <button id="batch-btn" class="btn-teal solid" disabled>Run batch</button>
+
+    <div id="batch-results" class="hidden">
+      <p class="micro mt">RESULTS</p>
+      <table class="results-table">
+        <thead><tr><th>FILE</th><th>PREDICTION</th></tr></thead>
+        <tbody id="batch-tbody"></tbody>
+      </table>
+      <p class="dim" id="batch-summary"></p>
+      <button id="download-csv" class="btn-ghost">&#8595; Download results.csv</button>
+    </div>
+  </section>
+
+  <footer class="foot">
+    Mayur &middot; Roll 240643 &middot; EE200 Course Project &middot; IIT Kanpur
+  </footer>
+</div>
+
+<div id="spinner" class="spinner hidden"><div class="ring"></div><span id="spinner-text">Working&hellip;</span></div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
