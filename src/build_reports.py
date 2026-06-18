@@ -378,7 +378,7 @@ def build_q3():
            "(Dockerfile in DEPLOY.md). Streamlit Cloud cannot host a Flask app.\n"
            "3. Test the LIVE link end-to-end — the rubric gives 0 for Q3B if the "
            "link does not work.\n\n"
-           "LIVE APP LINK:  __________________________  (paste after deploying)\n"
+           "LIVE APP LINK:  https://mayur2403-ee200-audio-fingerprinting.hf.space\n"
            "SOURCE CODE LINK: https://github.com/Mayurdp2403/ee200-course-project")
     p.output(os.path.join(REPORT, "Q3_report.pdf"))
     print("Wrote report/Q3_report.pdf")

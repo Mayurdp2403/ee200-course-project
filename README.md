@@ -108,4 +108,7 @@ steps in `app/web/DEPLOY.md`. In short:
 - [x] Extra analysis: Robustness Lab + single-peak-vs-pairs comparison
 - [x] Real song library indexed into `data/songs/`
 - [x] All notebooks run top-to-bottom with no errors
-- [ ] Q3B deployed; live link + source link pasted into the Q3 report  ← your step
+- [x] Q3B deployed (Hugging Face Spaces); live + source links in the Q3 report
+
+**Live app:** https://mayur2403-ee200-audio-fingerprinting.hf.space
+**Source:** https://github.com/Mayurdp2403/ee200-course-project
