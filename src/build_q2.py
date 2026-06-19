@@ -204,19 +204,27 @@ Fix: an anti-alias low-pass filter (cutoff ~25 Hz) before downsampling; the
 unavoidable cost is losing genuine fine QRS diagnostic detail.
 
 ## (g) Prototyping the detector — `find_onset`  [1.5%]
-Implemented in `src/q2_ecg.py`; it steps **beat-by-beat** (stride = `len(template)`),
-scores each beat by normalized correlation, and returns the first index with
-$\rho<$ threshold (else $-1$).
+Implemented in `src/q2_ecg.py` and imported here. It steps **beat-by-beat**
+(stride = `len(template)` = 200), scores each beat by normalized correlation, and
+returns the start index of the first beat with $\rho<$ threshold, else $-1$:
+
+```python
+def find_onset(ecg_signal, template, threshold=0.5):
+    x, t = np.asarray(ecg_signal), np.asarray(template)
+    L = t.size
+    for m in range(0, x.size - L + 1, L):      # one stride per beat
+        if normalized_correlation(t, x[m:m + L]) < threshold:
+            return m
+    return -1
+```
 """))
 
 cells.append(code(r"""
-import inspect
-print(inspect.getsource(q2.find_onset))
-print("Result on the provided data:", q2.find_onset(ecg, template, 0.5),
-      "(threshold=0.5)  ->  arrhythmia begins at t =", q2.find_onset(ecg, template, 0.5)/fs, "s")
-print("Sanity: threshold above every score returns first beat; impossible threshold returns -1:")
-print("   find_onset(.., threshold=2.0) =", q2.find_onset(ecg, template, 2.0))
-print("   find_onset(.., threshold=-2.0) =", q2.find_onset(ecg, template, -2.0))
+onset = q2.find_onset(ecg, template, 0.5)
+print(f"find_onset(ecg, template, 0.5) = {onset}  ->  arrhythmia begins at t = {onset/fs:.2f} s (beat #{onset//L})")
+print("Sanity checks:")
+print("  threshold=2.0  (above every score) ->", q2.find_onset(ecg, template, 2.0), "(first beat)")
+print("  threshold=-2.0 (impossible)        ->", q2.find_onset(ecg, template, -2.0), "(never breached)")
 """))
 
 cells.append(md(r"""

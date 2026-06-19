@@ -23,7 +23,8 @@ combinatorial `(f1,f2,Δt)` hashes → time-offset histogram matching. Engine in
 """))
 
 cells.append(code(r"""
-import os, sys
+import os, sys, warnings
+warnings.filterwarnings("ignore")  # silence cosmetic library notices (e.g. tqdm IProgress)
 sys.path.insert(0, os.path.abspath(os.path.join("..", "src")))
 import numpy as np
 import matplotlib.pyplot as plt
@@ -126,12 +127,19 @@ best, score, conf, results = fp.identify(qh, db)
 print(f"Query taken from '{truth}'  ->  predicted '{best}'  (score={score}, confidence={conf:.2f}x)")
 
 # Offset histogram: winner vs a wrong song.
+# Offsets span thousands of frames, so widen the bars (~range/120) to make the
+# single-frame alignment spike clearly visible instead of a 1-px sliver.
 wrong = next(s for s in db.songs if s != best)
 fig, ax = plt.subplots(1, 2, figsize=(14, 3.8), sharey=True)
 for a, song, ttl in [(ax[0], best, "CORRECT song"), (ax[1], wrong, "WRONG song")]:
     if song in results:
         offs = results[song][2]
-        a.bar(list(offs.keys()), list(offs.values()), width=1.0)
+        ks = np.array(list(offs.keys())); vs = np.array(list(offs.values()))
+        rng = max(1, ks.max() - ks.min())
+        a.bar(ks, vs, width=max(2.0, rng / 120), color="#f5a623")
+        pk = ks[vs.argmax()]
+        a.annotate(f"{vs.max()} hashes\nalign here", xy=(pk, vs.max()),
+                   xytext=(10, -4), textcoords="offset points", fontsize=8, color="#b8780f")
     a.set_title(f"{ttl}: '{song}'"); a.set_xlabel("offset (t_db − t_query)")
 ax[0].set_ylabel("matching hashes")
 plt.suptitle("Offset histograms: one sharp spike = match; scatter = no match")

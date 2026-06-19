@@ -142,12 +142,21 @@ def render_constellation(t, f, Sdb, peaks):
 def render_histogram(offsets, best_offset):
     fig, ax = plt.subplots(figsize=(8.4, 3.0)); fig.patch.set_facecolor(BG); _style_ax(ax)
     if offsets:
-        ks = list(offsets.keys()); vs = list(offsets.values())
-        ax.bar(ks, vs, width=1.4, color=ORANGE)
-        ax.annotate(f"{offsets[best_offset]} hashes align",
-                    xy=(best_offset, offsets[best_offset]), color=ORANGE, fontsize=9,
-                    xytext=(10, -6), textcoords="offset points")
-    ax.set_xlabel("time offset (db frame - query frame)"); ax.set_ylabel("# hashes")
+        ks = np.array(list(offsets.keys()), dtype=float)
+        vs = np.array(list(offsets.values()), dtype=float)
+        # Offsets span thousands of frames; widen the bars (~range/140) so the
+        # single-offset alignment spike is clearly visible, not a 1-px sliver.
+        rng = max(1.0, ks.max() - ks.min())
+        ax.bar(ks, vs, width=max(2.0, rng / 140), color=ORANGE)
+        peak = offsets[best_offset]
+        ax.annotate(f"{peak} hashes align here", xy=(best_offset, peak),
+                    xytext=(12, -2), textcoords="offset points", color=ORANGE, fontsize=9)
+        ax.text(0.97, 0.12, "chance matches\n(noise floor)", transform=ax.transAxes,
+                ha="right", va="center", color="#7a8aa0", fontsize=8)
+        ax.set_ylim(0, peak * 1.18)
+        pad = rng * 0.05
+        ax.set_xlim(ks.min() - pad, ks.max() + pad)
+    ax.set_xlabel("time offset (database frame - query frame)"); ax.set_ylabel("# hashes")
     return _fig_to_uri(fig)
 
 
