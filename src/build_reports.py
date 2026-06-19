@@ -87,7 +87,7 @@ class Report(FPDF):
         self.set_font("DejaVu", "", 10); self._mc(5.2, t); self.ln(1.2)
 
     def eq(self, t):
-        """Centered, monospace-ish emphasis line for an equation."""
+        """Centered emphasis line for an equation."""
         self.set_font("DejaVu", "I", 10); self.set_text_color(30, 30, 30)
         self.set_x(self.l_margin); self.multi_cell(self.epw, 5.4, _s(t), align="C")
         self.set_text_color(0); self.ln(1)
@@ -118,7 +118,7 @@ def title_block(pdf, subtitle):
 # ===========================================================================
 def build_q1():
     p = Report("Q1 - Frequency-Domain Image Recovery & Edge Detection")
-    title_block(p, "Q1A 'The Ghost Signal' (3%)  +  Q1B 'Missing Boundaries' (2%)  "
+    title_block(p, "Q1A 'The Ghost Signal'  +  Q1B 'Missing Boundaries'  "
                    "- EE200 Course Project")
 
     p.body(
@@ -419,7 +419,7 @@ def build_q1():
 # ===========================================================================
 def build_q2():
     p = Report("Q2 - The Midnight Episode: ECG Arrhythmia Detection")
-    title_block(p, "'Catching the Arrhythmia' via normalized template correlation (7.5%) "
+    title_block(p, "'Catching the Arrhythmia' via normalized template correlation "
                    "- EE200 Course Project")
     p.body(
         "A Holter recording is the discrete-time signal x[n] sampled at fs = 250 Hz "
@@ -433,7 +433,7 @@ def build_q2():
              "Fig 1. The full 20 s recording: regular, identical beats give way to an "
              "irregular region partway through.")
 
-    p.h2("(a) Reading the signal [0.75%]")
+    p.h2("(a) Reading the signal")
     p.body(
         "(i) Duration. The clip length is N/fs = 5000/250 = 20.0 seconds.\n"
         "(ii) Heart rate and beat length. One beat every 0.8 s is a rate of "
@@ -443,7 +443,7 @@ def build_q2():
         "period T0 = 0.8 s, the fundamental frequency is f0 = 1/T0 = 1/0.8 = 1.25 Hz. "
         "(Consistently, the 200-sample template is exactly one period long.)")
 
-    p.h2("(b) The healthy heart in the frequency domain [0.75%]")
+    p.h2("(b) The healthy heart in the frequency domain")
     p.figure("q2_spectrum.png",
              "Fig 2. Magnitude spectrum of the healthy segment; red lines mark "
              "multiples of f0 = 1.25 Hz.")
@@ -464,7 +464,7 @@ def build_q2():
         "spacing equals f0, the spacing between spectral lines doubles as well (the "
         "comb stretches out).")
 
-    p.h2("(c) Cutting a heartbeat - windowing [1.0%]")
+    p.h2("(c) Cutting a heartbeat - windowing")
     p.figure("q2_windows.png",
              "Fig 3. The 200-sample template (one beat) and the two mis-sized "
              "rectangular windows on the recording.")
@@ -488,7 +488,7 @@ def build_q2():
         "beat we are trying to model - so the right width is matched to the beat, not "
         "minimised.")
 
-    p.h2("(d) Matching the template - normalized correlation [1.5%]")
+    p.h2("(d) Matching the template - normalized correlation")
     p.eq("rho(m) = [ Sum_k t[k] x[m+k] ] / ( ||t|| * ||x_m|| )")
     p.body(
         "rho(m) is the cosine similarity between the template t and the length-L "
@@ -509,7 +509,7 @@ def build_q2():
         "that is at the opposite extreme from the healthy rho ~= +1, inverted beats "
         "are especially easy to flag with a simple threshold.")
 
-    p.h2("(e) Onset detection and the spectrogram [1.5%]")
+    p.h2("(e) Onset detection and the spectrogram")
     p.figure("q2_correlation.png",
              "Fig 4. ECG with the detected onset (top) and rho vs. time (bottom): the "
              "first 12 beats score ~= +1, then the score drops to ~= -1.")
@@ -533,7 +533,7 @@ def build_q2():
         "spectrogram as the corroborating big-picture view. (This is again the "
         "windowing time-resolution trade-off from part (c).)")
 
-    p.h2("(f) Sampling and aliasing [0.5%]")
+    p.h2("(f) Sampling and aliasing")
     p.body(
         "The clinically important QRS features contain content up to about 40 Hz.\n"
         "(i) Nyquist minimum. To capture content up to 40 Hz without aliasing the "
@@ -550,7 +550,7 @@ def build_q2():
         "above 25 Hz is filtered out - real diagnostic morphology is permanently "
         "lost in exchange for the lower data rate.")
 
-    p.h2("(g) Prototyping the detector: find_onset [1.5%]")
+    p.h2("(g) Prototyping the detector: find_onset")
     p.body(
         "find_onset(ecg_signal, template, threshold) implements the rule directly: "
         "it steps through the recording BEAT BY BEAT (advancing by len(template) = "
@@ -565,7 +565,7 @@ def build_q2():
         "threshold above every score returns the first beat, and an impossible "
         "threshold returns -1.")
 
-    p.h2("(h) Visualising the spectrogram, and choosing nperseg [0.5%]")
+    p.h2("(h) Visualising the spectrogram, and choosing nperseg")
     p.figure("q2_spectrogram.png",
              "Fig 5. Spectrogram (nperseg = 500): steady harmonic bands in the "
              "healthy region break up at the arrhythmia onset (marked).")
@@ -597,7 +597,7 @@ def build_q2():
 # ===========================================================================
 def build_q3():
     p = Report("Q3 - Sonic Signatures: Audio Fingerprinting + Identifier App")
-    title_block(p, "Q3A 'Magical Mystery Tune' (7.5%)  +  Q3B 'Zapptain America' (5%) "
+    title_block(p, "Q3A 'Magical Mystery Tune'  +  Q3B 'Zapptain America' "
                    "- EE200 Course Project")
     p.body(
         "This builds a Shazam-style identifier that never compares raw waveforms: it "
